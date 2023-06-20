@@ -1,10 +1,14 @@
 import imaplib
+import json
+
+settings = json.load(open("myIMAPlogin.json", "r"))
+
 
 # Connect to the IMAP server
-mail = imaplib.IMAP4_SSL('imap.example.com')
+mail = imaplib.IMAP4_SSL(settings["IMAPserver"])
 
 # Login to the server
-mail.login('example@example.com', 'password')
+mail.login(settings["email"],settings["password"])
 
 # Destination Folder name.
 newFolderName = ""
